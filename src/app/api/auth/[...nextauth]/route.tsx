@@ -77,8 +77,8 @@ export const authOptions = { // ✅ `NextAuthOptions` এর দরকার ন
       },
       async authorize(credentials) {
         if (!credentials || typeof credentials.email !== "string" || typeof credentials.password !== "string") {
-          throw new Error("ইমেইল বা পাসওয়ার্ড সঠিক নয়!");
-        }
+    throw new Error("ইমেইল বা পাসওয়ার্ড সঠিক নয়!");
+  }
 
         const user = await SignInUser(credentials.email);
 
