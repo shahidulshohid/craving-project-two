@@ -61,39 +61,48 @@
 // export { handler as GET, handler as POST };
 
 
-import NextAuth from "next-auth";
-import CredentialsProvider from "next-auth/providers/credentials";
-import { NextRequest, NextResponse } from "next/server";
 
-export const authOptions = {
+import NextAuth from "next-auth"; // ✅ সঠিক ইমপোর্ট
+import CredentialsProvider from "next-auth/providers/credentials";
+import GoogleProvider from "next-auth/providers/google";
+import SignInUser from "@/app/action/auth/signInUser";
+
+export const authOptions = { // ✅ `NextAuthOptions` এর দরকার নেই
   providers: [
     CredentialsProvider({
       name: "Credentials",
       credentials: {
-        name: { label: "Name", type: "text", placeholder: "Enter Name" },
         email: { label: "Email", type: "text", placeholder: "Enter Email" },
         password: { label: "Password", type: "password" },
       },
       async authorize(credentials) {
-        const user = { id: "1", name: credentials?.name, email: credentials?.email };
+        if (!credentials || typeof credentials.email !== "string" || typeof credentials.password !== "string") {
+          throw new Error("ইমেইল বা পাসওয়ার্ড সঠিক নয়!");
+        }
+
+        const user = await SignInUser(credentials.email);
 
         if (user) {
-          return user;
-        } else {
-          return null;
+          return {
+            id: user.id,
+            email: user.email,
+            name: user.name || "Anonymous",
+          };
         }
+
+        return null;
       },
     }),
+    GoogleProvider({
+      clientId: process.env.GOOGLE_CLIENT_ID!,
+      clientSecret: process.env.GOOGLE_CLIENT_SECRET!,
+    }),
   ],
-  secret: process.env.NEXTAUTH_SECRET,
+  pages: {
+    signIn: "/signin",
+  },
 };
 
 const handler = NextAuth(authOptions);
 
-export async function GET(req: NextRequest) {
-  return handler(req, NextResponse);
-}
-
-export async function POST(req: NextRequest) {
-  return handler(req, NextResponse);
-}
+export { handler as GET, handler as POST };
