@@ -5,6 +5,8 @@ import TopRestaurant from "../../components/homeComponents/TopRestaurant";
 import Support from "@/components/homeComponents/Support";
 import FAQ from "@/components/homeComponents/FAQ";
 import CitiesWeServe from "@/components/homeComponents/CitiesWeServe";
+import "../app/globals.css";
+
 
 export default function Home() {
   return (
