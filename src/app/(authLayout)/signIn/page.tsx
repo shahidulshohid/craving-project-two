@@ -1,6 +1,6 @@
-
 import Link from "next/link";
 import SignInForm from "@/components/homeComponents/SignInForm";
+import { Suspense } from "react";
 
 const SignIn = () => {
   return (
@@ -10,7 +10,9 @@ const SignIn = () => {
           Login to Craving
         </h2>
         <div>
-          <SignInForm />
+          <Suspense fallback={<div>Loading...</div>}>
+            <SignInForm />
+          </Suspense>
         </div>
         <div className="relative flex items-center justify-center my-4">
           <div className="w-full h-px bg-gray-300"></div>
