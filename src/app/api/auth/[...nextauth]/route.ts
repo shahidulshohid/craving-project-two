@@ -1,4 +1,6 @@
-import NextAuth, { NextAuthOptions } from "next-auth";
+// import NextAuth, { NextAuthOptions } from "next-auth";
+import { AuthOptions } from "next-auth";
+import NextAuth from "next-auth";
 import CredentialsProvider from "next-auth/providers/credentials";
 import GoogleProvider from "next-auth/providers/google";
 import dbConnect from "@/lib/dbConnect";
@@ -32,7 +34,7 @@ declare module "next-auth" {
 }
 
 // Define NextAuth Options
-export const authOptions: NextAuthOptions = {
+export const authOptions: AuthOptions  = {
   providers: [
     CredentialsProvider({
       name: "Credentials",
