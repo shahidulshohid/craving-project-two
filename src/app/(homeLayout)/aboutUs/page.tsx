@@ -9,8 +9,8 @@ import { CiLinkedin } from "react-icons/ci";
 import { FaGithub } from "react-icons/fa";
 import Lottie from "lottie-react";
 import Marquee from "react-fast-marquee";
-import { useEffect } from "react";
-import AOS from "aos";
+// import { useEffect } from "react";
+// import AOS from "aos";
 import "aos/dist/aos.css";
 
 const AboutUs: React.FC = () => {
@@ -97,12 +97,12 @@ const AboutUs: React.FC = () => {
     },
   ];
 
-  useEffect(() => {
-    AOS.init({
-      duration: 1000, // Default duration for all animations
-      once: true, // Animation runs once
-    });
-  }, []);
+  // useEffect(() => {
+  //   AOS.init({
+  //     duration: 1000, // Default duration for all animations
+  //     once: true, // Animation runs once
+  //   });
+  // }, []);
 
   return (
     <div>
