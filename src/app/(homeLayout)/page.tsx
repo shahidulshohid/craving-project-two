@@ -1,3 +1,5 @@
+"use client"
+
 import Banner from "@/components/homeComponents/banner";
 import Category from "@/components/homeComponents/Category";
 import FeaturedFood from "@/components/homeComponents/FeaturedFood";
