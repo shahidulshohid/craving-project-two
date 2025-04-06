@@ -5,7 +5,7 @@ import Category from "@/components/homeComponents/Category";
 import FeaturedFood from "@/components/homeComponents/FeaturedFood";
 import TopRestaurant from "../../components/homeComponents/TopRestaurant";
 // import Support from "@/components/homeComponents/Support";
-// import FAQ from "@/components/homeComponents/FAQ";
+import FAQ from "@/components/homeComponents/FAQ";
 import CitiesWeServe from "@/components/homeComponents/CitiesWeServe";
 
 export default function Home() {
@@ -23,7 +23,7 @@ export default function Home() {
       {/* top restaurant */}
       <TopRestaurant />
       {/* faq section */}
-      {/* <FAQ></FAQ> */}
+      <FAQ></FAQ>
       {/* Support */}
       {/* <Support /> */}
     </section>
