@@ -37,7 +37,7 @@
 // export default ShowRestaurant;
 
 
-import { GetServerSideProps } from 'next';
+//==============Okkkk code =========================
 import dbConnect from "@/lib/dbConnect";
 import { Collection } from "mongodb";
 
@@ -50,27 +50,7 @@ interface RestaurantType {
   email: string;
 }
 
-interface ShowRestaurantProps {
-  restaurants: RestaurantType[];
-}
-
-const ShowRestaurant: React.FC<ShowRestaurantProps> = ({ restaurants }) => {
-  return (
-    <div>
-      <h1 className="text-center">Restaurants</h1>
-      <ul>
-        {restaurants.map((restaurant) => (
-          <div key={restaurant._id}>
-            <h1 className="text-center">{restaurant.title}</h1>
-          </div>
-        ))}
-      </ul>
-    </div>
-  );
-};
-
-// This will run on the server before rendering the page
-export const getServerSideProps: GetServerSideProps = async () => {
+const ShowRestaurant = async () => {
   try {
     // Get the database instance
     const db = await dbConnect();
@@ -81,19 +61,25 @@ export const getServerSideProps: GetServerSideProps = async () => {
     // Fetch data from MongoDB
     const data: RestaurantType[] = await restaurantCollection.find({}).toArray();
 
-    // Return the data as props to the page component
-    return {
-      props: {
-        restaurants: JSON.parse(JSON.stringify(data)), // Serialize MongoDB data
-      },
-    };
+    return (
+      <div>
+        <h1 className="text-center">Restaurants</h1>
+        <ul>
+          {data.map((restaurant) => (
+            <div key={restaurant._id}>
+              <h1 className="text-center">{restaurant.title}</h1>
+            </div>
+          ))}
+        </ul>
+      </div>
+    );
   } catch (error) {
     console.error("Error fetching restaurants:", error);
-    return {
-      props: {
-        restaurants: [],
-      },
-    };
+    return (
+      <div>
+        <h1>Failed to load restaurants</h1>
+      </div>
+    );
   }
 };
 
