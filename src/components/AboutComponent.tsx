@@ -2,7 +2,8 @@
 import Image from "next/image";
 import missionImg from "@/assets/images/missionImg1.jpg";
 import visionImg from "@/assets/images/vision.jpg";
-import aboutBannerImage from "../../../assets/bannerImg/aboutBanner1.jpg";
+// import aboutBannerImage from "../../../assets/bannerImg/aboutBanner1.jpg";
+import aboutBannerImage from "@/assets/bannerImg/aboutBanner1.jpg";
 import whyLottie from "@/assets/why.json";
 import { CiFacebook } from "react-icons/ci";
 import { CiLinkedin } from "react-icons/ci";
